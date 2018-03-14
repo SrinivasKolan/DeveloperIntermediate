@@ -1,0 +1,5 @@
+<aura:component >
+    <aura:attribute name="message" type="string" />
+	<lightning:button variant="brand" label="Submit" onclick="{! c.handleClick }" />
+    <ui:inputText label="Message For Toast" value="{! v.message}"/>
+</aura:component>

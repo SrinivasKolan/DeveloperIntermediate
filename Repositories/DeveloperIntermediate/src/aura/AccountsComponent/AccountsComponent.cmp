@@ -1,0 +1,29 @@
+<aura:component controller="Custom_Accounts" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />	
+    <aura:attribute name="data" type="Account[]" />
+    <aura:iteration items="{!v.data}" var="item" >
+        <lightning:card >
+            <aura:set attribute="title">
+                <lightning:icon iconName="standard:account" size="small"/>
+                {! item.Name }
+            </aura:set>                        
+            Billing Street: <ui:outputText value="{!item.BillingStreet}"/><br/>
+            Billing City: <ui:outputText value="{!item.BillingCity}"/><br/>
+            Billing State: <ui:outputText value="{!item.BillingState}"/><br/>
+            Billing PostalCode: <ui:outputNumber value="{!item.BillingPostalCode}"/><br/>                
+            <aura:if isTrue="{! item.Rating != null}">
+                <aura:if isTrue="{!item.Rating == 'Hot'}">
+                    <lightning:icon iconName="action:check" size="small"/>
+                    <aura:set attribute="else">                        
+                        <aura:if isTrue="{! item.Rating == 'cold'}">
+                            <lightning:icon iconName="action:freeze_user" size="small"/>
+                            <aura:set attribute="else">
+                                <lightning:icon iconName="action:log_a_call" size="small"/>
+                            </aura:set>
+                        </aura:if>                        
+                    </aura:set>
+                </aura:if>
+            </aura:if>            
+        </lightning:card>
+    </aura:iteration>
+</aura:component>
